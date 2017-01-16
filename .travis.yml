@@ -3,7 +3,7 @@ language: c
 matrix:
   include:
   - os: linux
-    dist: trusty
+    dist: tambora
     sudo: required
 
 script:
