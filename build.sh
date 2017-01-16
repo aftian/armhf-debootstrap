@@ -2,8 +2,8 @@
 
 set -x
 
-SUITE=jessie
-MIRROR=http://ftp.us.debian.org/debian/
+SUITE=tambora
+MIRROR=http://arsip.blankonlinux.or.id/blankon/
 ARCH=armhf
 
 for a in $(mount |grep $PWD|awk '{print $3}'); do sudo umount $a; done
@@ -30,7 +30,7 @@ for var in "$@"; do
 done
 
 function build_debootstrap {
-  echo "=> Bulding base Debian rootfs..."
+  echo "=> Bulding base BlankOn rootfs..."
   sudo qemu-debootstrap --no-check-gpg --arch=$ARCH ${SUITE} rootfs.debootstrap/ ${MIRROR}
 
 }
@@ -56,7 +56,7 @@ EOF
   sudo chroot rootfs.debootstrap /bin/bash <<EOF
 set -x
 echo -e "\
-deb http://ftp.us.debian.org/debian/ jessie main\
+deb http://ftp.us.debian.org/blankon/ tambora main\
 \n\
 deb http://emdebian.org/tools/debian/ jessie main\
 " > /etc/apt/sources.list
